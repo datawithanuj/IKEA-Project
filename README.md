@@ -14,7 +14,7 @@ IKEA is used as a fictional case-study theme for the dashboard. The project is n
 
 The Power BI report contains three pages: Sales Pulse, Customer Intelligence, and Retention Action Plan.
 
-[![Combined preview of all three Power BI report pages](https://raw.githubusercontent.com/datawithanuj/IKEA-Project/main/IKEA_Dashboard_Preview.jpg)](https://raw.githubusercontent.com/datawithanuj/IKEA-Project/main/IKEA_Dashboard_Preview.jpg)
+[![Combined preview of all three Power BI report pages](https://raw.githubusercontent.com/datawithanuj/IKEA-Project/main/IKEA_Dashboard_Preview.png)](https://raw.githubusercontent.com/datawithanuj/IKEA-Project/main/IKEA_Dashboard_Preview.png)
 
 ## Dashboard Highlights
 
