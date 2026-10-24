@@ -1,10 +1,10 @@
 -- ============================================================
 -- IKEA CUSTOMER ANALYTICS
--- SQL data preparation | MySQL Workbench
+-- SQL data preparation | MySQL 8.0+ / MySQL Workbench
 --
 -- Workflow:
 -- 1. Update the two CSV paths below.
--- 2. Run this script in MySQL Workbench with LOCAL INFILE enabled.
+-- 2. Run this script with MySQL 8.0+ and LOCAL INFILE enabled.
 -- 3. Export the final SELECT result as retail_cleaned.csv.
 -- 4. Place retail_cleaned.csv beside python_rfm.py and run the Python script.
 --
