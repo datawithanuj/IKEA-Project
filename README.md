@@ -30,7 +30,7 @@ The Power BI report contains three pages: Sales Pulse, Customer Intelligence, an
 | Customer segments | **10** |
 | Champions | **1,283 (21.9%)** |
 | Champions' share of revenue | **68.1%** |
-| Customers flagged as churned | **2,700 (46.1%)** |
+| Inactive customers (Recency > 90 days) | **2,976 (50.78%)** |
 
 These figures are calculated from the project's Online Retail II data and RFM logic.
 
@@ -70,10 +70,11 @@ These figures are calculated from the project's Online Retail II data and RFM lo
 | File | Description |
 |---|---|
 | [`IKEA_Project.pbix`](IKEA_Project.pbix) | Interactive Power BI dashboard; download and open in Power BI Desktop |
+| [`IKEA_Dashboard_Preview.png`](IKEA_Dashboard_Preview.png) | High-resolution image preview of all three report pages |
 | [`python_rfm.py`](python_rfm.py) | Python workflow for RFM analysis and customer segmentation |
 | [`README.md`](README.md) | Project overview and reproduction notes |
 
-The raw and transaction-level CSV exports, along with generated summary CSVs, are not included. The Python script expects a locally prepared `retail_cleaned.csv` and generates the detailed Power BI transaction export and summary files in its working directory.
+The SQL preparation queries, source dataset, and generated CSV outputs are not included. The Python script expects a locally prepared `retail_cleaned.csv` and writes the transaction-level Power BI export plus customer and segment summaries to its working directory.
 
 ## Dataset
 
