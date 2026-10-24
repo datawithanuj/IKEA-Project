@@ -4,9 +4,7 @@ An end-to-end customer analytics portfolio project using SQL, Python and Power B
 
 ## Dashboard
 
-Download [`IKEA_Project.pbix`](IKEA_Project.pbix) and open it in Power BI Desktop. The report includes a home/navigation page, business overview and RFM analysis. The supplied Overview and RFM PNGs were blank layout templates and are not included. The theme and IKEA logo are provided as supporting assets.
-
-![IKEA Customer Analytics home page](IKEA_Home_Page.png)
+Download [`IKEA_Project.pbix`](IKEA_Project.pbix) and open it in Power BI Desktop. The report includes a home/navigation page, business overview and RFM analysis.
 
 ## Questions explored
 
@@ -25,10 +23,7 @@ See [`rfm_segment_summary.csv`](rfm_segment_summary.csv) for all segments and me
 
 - `IKEA_Project.pbix` — Power BI dashboard
 - `python_rfm.py` — RFM analysis and segmentation script
-- `IKEA_Project_Theme.json` — Power BI theme
-- `IKEA_Logo.png`, `IKEA_Home_Page.png` — supporting logo and dashboard preview
 - `rfm_customer_summary.csv`, `rfm_segment_summary.csv` — compact derived summaries
-- `requirements.txt` — Python dependencies
 
 Large raw and transaction-level CSV exports are not committed. This keeps the repository practical to clone; the raw dataset is publicly available from UCI and derived files can be regenerated locally.
 
