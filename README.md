@@ -52,18 +52,18 @@ These figures are calculated from the project's Online Retail II data and RFM lo
 
 ## Tools Used
 
-- **SQL Server / SSMS** — transaction data preparation and validation
+- **MySQL Workbench** — transaction data import, preparation, and validation
 - **Python (pandas, NumPy)** — RFM calculations, scoring, segmentation, and output generation
 - **Microsoft Power BI** — interactive dashboard and report pages
 - **DAX** — report measures and KPI calculations
 
 ## Project Workflow
 
-1. Prepared and cleaned the Online Retail II transaction data with SQL.
-2. Calculated customer-level RFM metrics in Python.
-3. Scored and assigned customers to behavioral segments.
-4. Applied a 90-day inactivity rule to identify churned customers.
-5. Built a Power BI report to explore overall performance and segment details.
+1. Imported the two Online Retail II CSV files and prepared the cleaned transaction table with MySQL.
+2. Exported the cleaned table as `retail_cleaned.csv`.
+3. Calculated customer-level RFM metrics in Python and assigned behavioral segments.
+4. Applied a 90-day inactivity rule to identify inactive customers.
+5. Built a Power BI report to explore sales, customer segments, and retention.
 
 ## Repository Contents
 
@@ -71,10 +71,11 @@ These figures are calculated from the project's Online Retail II data and RFM lo
 |---|---|
 | [`IKEA_Project.pbix`](IKEA_Project.pbix) | Interactive Power BI dashboard; download and open in Power BI Desktop |
 | [`IKEA_Dashboard_Preview.png`](IKEA_Dashboard_Preview.png) | High-resolution image preview of all three report pages |
+| [`sql_data_preparation.sql`](sql_data_preparation.sql) | MySQL workflow to import, clean, and export the transaction data |
 | [`python_rfm.py`](python_rfm.py) | Python workflow for RFM analysis and customer segmentation |
 | [`README.md`](README.md) | Project overview and reproduction notes |
 
-The SQL preparation queries, source dataset, and generated CSV outputs are not included. The Python script expects a locally prepared `retail_cleaned.csv` and writes the transaction-level Power BI export plus customer and segment summaries to its working directory.
+The source dataset and generated CSV outputs are not included. In `sql_data_preparation.sql`, replace the two `C:/path/to/` placeholders with your downloaded CSV locations, run the SQL workflow, and export the final result as `retail_cleaned.csv`. Then install the Python dependencies with `pip install pandas numpy` and run `python python_rfm.py` from the folder containing that CSV. The script writes the transaction-level Power BI export plus customer and segment summaries to its working directory.
 
 ## Dataset
 
