@@ -48,11 +48,11 @@ These figures are calculated from the project's Online Retail II data and RFM lo
 - **Monetary:** sum of transaction value per customer.
 - Each measure receives a 1–5 quantile score. The weighted RFM score uses 35% Recency, 35% Frequency, and 30% Monetary.
 - Customers are assigned to ten segments, from Champions and Loyal Customers to At Risk, Hibernating, and Lost.
-- A customer is flagged as churned when Recency is greater than 90 days.
+- A customer is marked inactive when Recency is greater than 90 days.
 
 ## Tools Used
 
-- **MySQL Workbench** — transaction data import, preparation, and validation
+- **MySQL Workbench (MySQL 8.0+)** — transaction data import, preparation, and validation
 - **Python (pandas, NumPy)** — RFM calculations, scoring, segmentation, and output generation
 - **Microsoft Power BI** — interactive dashboard and report pages
 - **DAX** — report measures and KPI calculations
