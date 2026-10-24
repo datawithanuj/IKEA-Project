@@ -1,7 +1,7 @@
 # ================================================================
-# IKEA GIFTING | STEP 2: RFM Analysis & Customer Segmentation
-# Input:  retail_cleaned.csv  (exported from MySQL)
-# Output: rfm_segmented.csv   (load into Power BI)
+# IKEA CUSTOMER ANALYTICS | RFM Analysis & Customer Segmentation
+# Input:   retail_cleaned.csv (prepared from the SQL workflow)
+# Outputs: rfm_transactions_powerbi.csv, rfm_customer_summary.csv, rfm_segment_summary.csv
 # ================================================================
 
 import pandas as pd
@@ -12,7 +12,7 @@ from datetime import timedelta
 # 1. LOAD DATA
 # ----------------------------------------------------------------
 print("=" * 55)
-print("  IKEA GIFTING — RFM SEGMENTATION ANALYSIS")
+print("  IKEA CUSTOMER ANALYTICS — RFM SEGMENTATION ANALYSIS")
 print("=" * 55)
 
 # Update path if needed
