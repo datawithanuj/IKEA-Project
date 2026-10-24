@@ -1,58 +1,94 @@
 # IKEA Customer Analytics & RFM Segmentation
 
-An independent customer analytics project built with SQL, Python and Power BI. It uses the public Online Retail II transaction dataset to study customer purchasing behavior, customer value, retention and churn through RFM analysis.
+> An end-to-end customer analytics project using **SQL**, **Python**, and **Power BI** to explore retail transactions, customer value, RFM segments, and churn.
 
-> **Project note:** IKEA is used as a fictional case-study theme for this portfolio dashboard. This project is not affiliated with or endorsed by IKEA. All metrics come from the public, anonymized retail dataset and do not represent IKEA's actual business.
+![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?logo=powerbi&logoColor=black) ![Python](https://img.shields.io/badge/Python-RFM%20Analysis-3776AB?logo=python&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-Data%20Preparation-336791) ![Status](https://img.shields.io/badge/Project-Completed-2ea44f)
 
-## Dashboard
+## Project Overview
 
-Download [`IKEA_Project.pbix`](IKEA_Project.pbix) and open it in Power BI Desktop.
+This project turns online retail transaction data into a customer-focused analytics dashboard. SQL is used to prepare the data, Python calculates RFM metrics and customer segments, and Power BI presents the results in an interactive report.
 
-The report is organized into three pages:
+IKEA is used as a fictional case-study theme for the dashboard. The project is not affiliated with or endorsed by IKEA, and the metrics below are not IKEA business results.
 
-- **Home** — dashboard landing page and navigation.
-- **Business Overview** — customer and revenue overview, segment and churn summaries, and time/geography views.
-- **RFM Analysis** — customer segmentation and RFM performance.
+## Dashboard Highlights
 
-The PBIX is the interactive report. GitHub does not render Power BI reports in the browser; download the file to view and interact with it in Power BI Desktop.
+- Home page with report navigation
+- Business Overview page for customer, revenue, and retention metrics
+- RFM Analysis page for customer segment performance
+- Customer segmentation based on Recency, Frequency, and Monetary value
+- Churn flag based on more than 90 days since the last purchase
 
-## Analysis
+## Key Metrics
 
-The Python workflow calculates customer-level:
+| KPI | Value |
+|---|---:|
+| Customers analyzed | **5,861** |
+| Customer segments | **10** |
+| Champions | **1,283 (21.9%)** |
+| Champions' share of revenue | **68.1%** |
+| Customers flagged as churned | **2,700 (46.1%)** |
 
-- **Recency:** days since the customer's latest purchase, measured from one day after the last transaction in the dataset.
-- **Frequency:** number of distinct invoices.
-- **Monetary:** total transaction value.
+Metrics are calculated from the supplied Online Retail II data and the project's RFM logic. See [`rfm_segment_summary.csv`](rfm_segment_summary.csv) for the full segment breakdown.
 
-Each RFM component is scored from 1 to 5 using quantile groups. The composite score weights Recency at 35%, Frequency at 35% and Monetary at 30%. Customers are assigned to ten segments, including Champions, Loyal Customers, At Risk, Promising, Hibernating and Lost. Churn is flagged when Recency is over 90 days.
+## Business Questions
 
-### Snapshot from the included summary
+- Which customer segments contribute the most revenue?
+- Which customers are becoming inactive or may need retention attention?
+- How do recency, order frequency, and customer spending differ by segment?
+- Where should customer retention efforts be prioritized?
 
-- **5,861 customers** are represented.
-- **Champions:** 1,283 customers (21.9%) and 68.1% of recorded revenue.
-- **90-day churn rule:** 2,700 customers are flagged as churned (about 46.1%).
+## RFM Method
 
-These are results from this project's supplied data and logic; they are not IKEA business figures. See [`rfm_segment_summary.csv`](rfm_segment_summary.csv) for all ten segments and their metrics.
+- **Recency:** days since the customer's latest purchase, using the day after the dataset's last transaction as the snapshot date.
+- **Frequency:** number of distinct invoices per customer.
+- **Monetary:** sum of transaction value per customer.
+- Each measure receives a 1–5 quantile score. The weighted RFM score uses 35% Recency, 35% Frequency, and 30% Monetary.
+- Customers are assigned to ten segments, from Champions and Loyal Customers to At Risk, Hibernating, and Lost.
+- A customer is flagged as churned when Recency is greater than 90 days.
 
-## Project files
+## Tools Used
 
-- [`IKEA_Project.pbix`](IKEA_Project.pbix) — interactive Power BI report.
-- [`python_rfm.py`](python_rfm.py) — customer RFM calculation, scoring, segmentation and export workflow.
-- [`rfm_customer_summary.csv`](rfm_customer_summary.csv) — customer-level RFM metrics and segment assignments.
-- [`rfm_segment_summary.csv`](rfm_segment_summary.csv) — aggregated metrics by segment.
+- **SQL Server / SSMS** — transaction data preparation and validation
+- **Python (pandas, NumPy)** — RFM calculations, scoring, segmentation, and output generation
+- **Microsoft Power BI** — interactive dashboard and report pages
+- **DAX** — report measures and KPI calculations
 
-Large raw and transaction-level exports are not included because they make the repository unnecessarily large. The Python script reads `retail_cleaned.csv` from its working directory and writes the detailed Power BI transaction export and both summaries there.
+## Project Workflow
 
-## Data and tools
+1. Prepared and cleaned the Online Retail II transaction data with SQL.
+2. Calculated customer-level RFM metrics in Python.
+3. Scored and assigned customers to behavioral segments.
+4. Applied a 90-day inactivity rule to identify churned customers.
+5. Built a Power BI report to explore overall performance and segment details.
 
-The source is **Online Retail II** from the UCI Machine Learning Repository, donated by Daqing Chen. It contains anonymized transactions from December 2009 through December 2011. The dataset is licensed under CC BY 4.0; check the source license and attribution requirements before reuse.
+## Repository Contents
 
-Tools used: SQL Server / SSMS, Python (pandas and NumPy), Power BI Desktop and DAX.
+| File | Description |
+|---|---|
+| [`IKEA_Project.pbix`](IKEA_Project.pbix) | Interactive Power BI dashboard; download and open in Power BI Desktop |
+| [`python_rfm.py`](python_rfm.py) | Python workflow for RFM analysis and customer segmentation |
+| [`rfm_customer_summary.csv`](rfm_customer_summary.csv) | Customer-level RFM metrics, scores, and segment assignments |
+| [`rfm_segment_summary.csv`](rfm_segment_summary.csv) | Customer counts and performance metrics by segment |
+| [`README.md`](README.md) | Project overview and reproduction notes |
 
-## Reproduce the analysis
+The raw and transaction-level CSV exports are excluded because of their size. The Python script expects a locally prepared `retail_cleaned.csv` and generates the detailed Power BI transaction export and summary files.
 
-1. Get Online Retail II from the UCI Machine Learning Repository.
-2. Use the SQL cleaning workflow to prepare `retail_cleaned.csv` with the columns `Invoice`, `StockCode`, `Description`, `Quantity`, `InvoiceDate`, `Price`, `Customer_ID`, `Country` and `TotalAmount`.
-3. Install the Python dependencies: `pandas` and `numpy`.
-4. Run `python python_rfm.py` from the directory containing `retail_cleaned.csv`.
-5. In Power BI Desktop, point the report to the generated `rfm_transactions_powerbi.csv` and refresh.
+## Dataset
+
+The analysis uses **Online Retail II** from the UCI Machine Learning Repository, donated by Daqing Chen. It contains anonymized online retail transactions from December 2009 through December 2011. The dataset is licensed under CC BY 4.0; review its license and attribution requirements before reuse.
+
+## Skills Demonstrated
+
+Data cleaning · SQL analysis · Python data processing · RFM analysis · Customer segmentation · Churn identification · Power BI dashboarding · KPI design · Business storytelling
+
+## Conclusion
+
+This project demonstrates a complete analytics workflow—from preparing transaction data to identifying high-value and at-risk customer segments, then presenting the results in Power BI. The analysis highlights how customer-level behavior can support more focused retention decisions.
+
+## Author
+
+**Anuj Devrani** · [GitHub](https://github.com/datawithanuj) · [LinkedIn](https://www.linkedin.com/in/anujdevrani)
+
+---
+
+*Built as part of my data analytics portfolio.*
