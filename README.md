@@ -10,13 +10,17 @@ This project turns online retail transaction data into a customer-focused analyt
 
 IKEA is used as a fictional case-study theme for the dashboard. The project is not affiliated with or endorsed by IKEA, and the metrics below are not IKEA business results.
 
+## Dashboard Preview
+
+The Power BI report contains three pages: Sales Pulse, Customer Intelligence, and Retention Action Plan.
+
+![Combined preview of all three Power BI report pages](IKEA_Dashboard_Preview.jpg)
+
 ## Dashboard Highlights
 
-- Home page with report navigation
-- Business Overview page for customer, revenue, and retention metrics
-- RFM Analysis page for customer segment performance
-- Customer segmentation based on Recency, Frequency, and Monetary value
-- Churn flag based on more than 90 days since the last purchase
+- Sales Pulse summarizes revenue, orders, customers, and average order value.
+- Customer Intelligence compares customer counts, revenue, and purchase frequency across segments.
+- Retention Action Plan highlights inactive customers, value tiers, and segments for follow-up.
 
 ## Key Metrics
 
