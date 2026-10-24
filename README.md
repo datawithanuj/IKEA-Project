@@ -1,42 +1,58 @@
-# IKEA Gifting | Customer Analytics & RFM Segmentation
+# IKEA Customer Analytics & RFM Segmentation
 
-An end-to-end customer analytics portfolio project using SQL, Python and Power BI. This independent learning project is inspired by the linked Mansi Goel tutorial; its implementation, analysis and dashboard are the author's own work. “IKEA Gifting” is fictional, not affiliated with or endorsed by IKEA. Findings come from the public, anonymized dataset and do not describe IKEA's actual business.
+An independent customer analytics project built with SQL, Python and Power BI. It uses the public Online Retail II transaction dataset to study customer purchasing behavior, customer value, retention and churn through RFM analysis.
+
+> **Project note:** IKEA is used as a fictional case-study theme for this portfolio dashboard. This project is not affiliated with or endorsed by IKEA. All metrics come from the public, anonymized retail dataset and do not represent IKEA's actual business.
 
 ## Dashboard
 
-Download [`IKEA_Project.pbix`](IKEA_Project.pbix) and open it in Power BI Desktop. The report includes a home/navigation page, business overview and RFM analysis.
+Download [`IKEA_Project.pbix`](IKEA_Project.pbix) and open it in Power BI Desktop.
 
-## Questions explored
+The report is organized into three pages:
 
-- Which customer segments contribute most to revenue?
-- Which previously valuable customers may be at risk of lapsing?
-- How do customer value and churn vary over time and geography?
-- What retention actions suit each RFM segment?
+- **Home** — dashboard landing page and navigation.
+- **Business Overview** — customer and revenue overview, segment and churn summaries, and time/geography views.
+- **RFM Analysis** — customer segmentation and RFM performance.
 
-## Analysis snapshot
+The PBIX is the interactive report. GitHub does not render Power BI reports in the browser; download the file to view and interact with it in Power BI Desktop.
 
-The supplied segment summary reports 5,861 customers. Champions are 21.9% of customers and contribute 68.1% of revenue. Churn is defined as more than 90 days of inactivity; segment counts total 2,700 churned customers (about 46.1%). These figures come from the supplied exports and may differ from the tutorial.
+## Analysis
 
-See [`rfm_segment_summary.csv`](rfm_segment_summary.csv) for all segments and measures.
+The Python workflow calculates customer-level:
 
-## Files
+- **Recency:** days since the customer's latest purchase, measured from one day after the last transaction in the dataset.
+- **Frequency:** number of distinct invoices.
+- **Monetary:** total transaction value.
 
-- `IKEA_Project.pbix` — Power BI dashboard
-- `python_rfm.py` — RFM analysis and segmentation script
-- `rfm_customer_summary.csv`, `rfm_segment_summary.csv` — compact derived summaries
+Each RFM component is scored from 1 to 5 using quantile groups. The composite score weights Recency at 35%, Frequency at 35% and Monetary at 30%. Customers are assigned to ten segments, including Champions, Loyal Customers, At Risk, Promising, Hibernating and Lost. Churn is flagged when Recency is over 90 days.
 
-Large raw and transaction-level CSV exports are not committed. This keeps the repository practical to clone; the raw dataset is publicly available from UCI and derived files can be regenerated locally.
+### Snapshot from the included summary
 
-## Data source and tools
+- **5,861 customers** are represented.
+- **Champions:** 1,283 customers (21.9%) and 68.1% of recorded revenue.
+- **90-day churn rule:** 2,700 customers are flagged as churned (about 46.1%).
 
-Online Retail II, UCI Machine Learning Repository, donated by Daqing Chen. The dataset covers December 2009–December 2011 and is licensed under CC BY 4.0. Review the license before reuse. The project uses SQL Server/SSMS, Python (pandas and NumPy), Power BI Desktop and DAX.
+These are results from this project's supplied data and logic; they are not IKEA business figures. See [`rfm_segment_summary.csv`](rfm_segment_summary.csv) for all ten segments and their metrics.
 
-## Reproduction
+## Project files
 
-1. Download Online Retail II from the UCI Machine Learning Repository.
-2. Use the SQL cleaning workflow to create `retail_cleaned.csv` with `Invoice`, `StockCode`, `Description`, `Quantity`, `InvoiceDate`, `Price`, `Customer_ID`, `Country`, and `TotalAmount` columns.
-3. Install Python 3, pandas and NumPy.
-4. Place `retail_cleaned.csv` in the current directory and run `python python_rfm.py`.
-5. In Power BI Desktop, update the source path to the generated `rfm_transactions_powerbi.csv` and refresh.
+- [`IKEA_Project.pbix`](IKEA_Project.pbix) — interactive Power BI report.
+- [`python_rfm.py`](python_rfm.py) — customer RFM calculation, scoring, segmentation and export workflow.
+- [`rfm_customer_summary.csv`](rfm_customer_summary.csv) — customer-level RFM metrics and segment assignments.
+- [`rfm_segment_summary.csv`](rfm_segment_summary.csv) — aggregated metrics by segment.
 
-Tutorial reference: [Mansi Goel's IKEA Gifting project walkthrough](https://youtu.be/LQa0SiuZfhA). This is an independently implemented learning project based on ideas and workflow studied in that walkthrough.
+Large raw and transaction-level exports are not included because they make the repository unnecessarily large. The Python script reads `retail_cleaned.csv` from its working directory and writes the detailed Power BI transaction export and both summaries there.
+
+## Data and tools
+
+The source is **Online Retail II** from the UCI Machine Learning Repository, donated by Daqing Chen. It contains anonymized transactions from December 2009 through December 2011. The dataset is licensed under CC BY 4.0; check the source license and attribution requirements before reuse.
+
+Tools used: SQL Server / SSMS, Python (pandas and NumPy), Power BI Desktop and DAX.
+
+## Reproduce the analysis
+
+1. Get Online Retail II from the UCI Machine Learning Repository.
+2. Use the SQL cleaning workflow to prepare `retail_cleaned.csv` with the columns `Invoice`, `StockCode`, `Description`, `Quantity`, `InvoiceDate`, `Price`, `Customer_ID`, `Country` and `TotalAmount`.
+3. Install the Python dependencies: `pandas` and `numpy`.
+4. Run `python python_rfm.py` from the directory containing `retail_cleaned.csv`.
+5. In Power BI Desktop, point the report to the generated `rfm_transactions_powerbi.csv` and refresh.
