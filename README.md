@@ -28,7 +28,7 @@ IKEA is used as a fictional case-study theme for the dashboard. The project is n
 | Champions' share of revenue | **68.1%** |
 | Customers flagged as churned | **2,700 (46.1%)** |
 
-Metrics are calculated from the supplied Online Retail II data and the project's RFM logic. See [`rfm_segment_summary.csv`](rfm_segment_summary.csv) for the full segment breakdown.
+These figures are calculated from the project's Online Retail II data and RFM logic.
 
 ## Business Questions
 
@@ -67,11 +67,9 @@ Metrics are calculated from the supplied Online Retail II data and the project's
 |---|---|
 | [`IKEA_Project.pbix`](IKEA_Project.pbix) | Interactive Power BI dashboard; download and open in Power BI Desktop |
 | [`python_rfm.py`](python_rfm.py) | Python workflow for RFM analysis and customer segmentation |
-| [`rfm_customer_summary.csv`](rfm_customer_summary.csv) | Customer-level RFM metrics, scores, and segment assignments |
-| [`rfm_segment_summary.csv`](rfm_segment_summary.csv) | Customer counts and performance metrics by segment |
 | [`README.md`](README.md) | Project overview and reproduction notes |
 
-The raw and transaction-level CSV exports are excluded because of their size. The Python script expects a locally prepared `retail_cleaned.csv` and generates the detailed Power BI transaction export and summary files.
+The raw and transaction-level CSV exports, along with generated summary CSVs, are not included. The Python script expects a locally prepared `retail_cleaned.csv` and generates the detailed Power BI transaction export and summary files in its working directory.
 
 ## Dataset
 
